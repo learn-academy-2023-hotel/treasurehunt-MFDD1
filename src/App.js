@@ -15,11 +15,24 @@ const App = () => {
     "?",
     "?",
   ])
+  const [treasureLocation, setTreasureLocation] = useState(
+  Math.floor(Math.random() * board.length)
+  )
+  const [bombLocation, setBombLocation] = useState(
+    Math.floor(Math.random() * board.length)
+  )
 
   const handleSquareClick = (clickedSquareIndex) => {
     let updatedBoard = [...board]
-    updatedBoard[clickedSquareIndex] = " w "
-    setBoard(updatedBoard)
+    if (clickedSquareIndex === treasureLocation) {
+      updatedBoard[clickedSquareIndex] = "💎"
+    } else if (clickedSquareIndex === bombLocation) {
+      updatedBoard[clickedSquareIndex] = "💣"
+    } else {
+    updatedBoard[clickedSquareIndex] = "🌲"
+   
+  }
+  setBoard(updatedBoard)
   }
 
   return (
